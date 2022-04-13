@@ -33,12 +33,14 @@ The **Update-AzRouteServer** cmdlet switches the branch-to-branch traffic to an 
 ```powershell
 Update-AzRouteServer -ResourceGroupName $rgname -RouteServerName $routeServerName -AllowBranchToBranchTraffic
 ```
+
 To enable branch to branch traffic for route server.
 
 ### Example 1
 ```powershell
 Update-AzRouteServer -ResourceGroupName $rgname -RouteServerName $routeServerName
 ```
+
 To disable branch to branch traffic for route server.
 
 ## PARAMETERS
@@ -85,7 +87,7 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -ResourceId
@@ -115,7 +117,7 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
+Accept wildcard characters: True
 ```
 
 ### -Confirm

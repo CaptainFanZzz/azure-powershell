@@ -14,15 +14,15 @@ denies a private endpoint connection.
 
 ### ByResourceId (Default)
 ```
-Deny-AzPrivateEndpointConnection -ResourceId <String> [-Description <String>]
+Deny-AzPrivateEndpointConnection [-Description <String>] -ResourceId <String>
  [-DefaultProfile <IAzureContextContainer>] [<CommonParameters>]
 ```
 
 ### ByResource
 ```
-Deny-AzPrivateEndpointConnection -Name <String> -ServiceName <String> -ResourceGroupName <String>
-[-PrivateLinkResourceType <string>] [-Description <String>]
-[-DefaultProfile <IAzureContextContainer>] [<CommonParameters>]
+Deny-AzPrivateEndpointConnection -Name <String> [-Description <String>] -ResourceGroupName <String>
+ -ServiceName <String> [-DefaultProfile <IAzureContextContainer>] [-PrivateLinkResourceType <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -95,7 +95,7 @@ Aliases:
 Required: False
 Position: Named
 Default value: 'Microsoft.Network/privateLinkServices'
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

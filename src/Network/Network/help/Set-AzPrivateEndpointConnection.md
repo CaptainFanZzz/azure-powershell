@@ -14,16 +14,15 @@ Updates a private endpoint connection state on private link service.
 
 ### ByResourceId (Default)
 ```
-Set-AzPrivateEndpointConnection -ResourceId <String>
- -PrivateLinkServiceConnectionState <String> [-Description <String>]
- [-DefaultProfile <IAzureContextContainer>] [<CommonParameters>]
+Set-AzPrivateEndpointConnection -PrivateLinkServiceConnectionState <String> [-Description <String>]
+ -ResourceId <String> [-DefaultProfile <IAzureContextContainer>] [<CommonParameters>]
 ```
 
 ### ByResource
 ```
-Set-AzPrivateEndpointConnection -Name <String> -ServiceName <String> -ResourceGroupName <String> [-PrivateLinkResourceType <String>]
- -PrivateLinkServiceConnectionState <String> [-Description <String>]
- [-DefaultProfile <IAzureContextContainer>] [<CommonParameters>]
+Set-AzPrivateEndpointConnection -Name <String> -PrivateLinkServiceConnectionState <String>
+ [-Description <String>] -ResourceGroupName <String> -ServiceName <String>
+ [-DefaultProfile <IAzureContextContainer>] [-PrivateLinkResourceType <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -96,7 +95,7 @@ Aliases:
 Required: False
 Position: Named
 Default value: 'Microsoft.Network/privateLinkServices'
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
