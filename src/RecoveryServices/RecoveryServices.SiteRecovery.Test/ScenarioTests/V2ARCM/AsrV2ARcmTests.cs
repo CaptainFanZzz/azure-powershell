@@ -14,22 +14,18 @@
 
 using System;
 using System.IO;
-using Microsoft.Azure.ServiceManagement.Common.Models;
+using Microsoft.Azure.Commands.AsrV2ARcm.Test.ScenarioTests;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace RecoveryServices.SiteRecovery.Test
 {
-    public class AsrV2ARCMTests : AsrV2ARCMTestsBase
+    public class AsrV2ARCMTests : AsrV2ARcmTestRunner
     {
-        public XunitTracingInterceptor _logger;
-
         public AsrV2ARCMTests(
-            ITestOutputHelper output)
+            ITestOutputHelper output) : base(output)
         {
-            _logger = new XunitTracingInterceptor(output);
-            XunitTracingInterceptor.AddToContext(_logger);
             this.PowershellFile = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 "ScenarioTests", "V2ARCM", "AsrV2ARcmTests.ps1");
@@ -40,105 +36,105 @@ namespace RecoveryServices.SiteRecovery.Test
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMFabric()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMFabric");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMFabric");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMPolicy()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMPolicy");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMPolicy");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMContainer()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMContainer");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMContainer");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMContainerMapping()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMContainerMapping");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMContainerMapping");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.LiveOnly)]
         public void TestV2ARCMEnableDR()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMEnableDR");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMEnableDR");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMUpdateProtection()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMUpdateProtection");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMUpdateProtection");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMTestFailover()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMTestFailover");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMTestFailover");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMFailover()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMFailover");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMFailover");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMCommit()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMCommit");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMCommit");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMReprotect()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMReprotect");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMReprotect");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMFailback()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMFailback");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMFailback");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMCancelFailover()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMCancelFailover");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMCancelFailover");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.LiveOnly)]
         public void TestV2ARCM540Reprotect()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCM540Reprotect");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCM540Reprotect");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMRecoveryPlan()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMRecoveryPlan");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMRecoveryPlan");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMSwitchAppliance()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-V2ARCMSwitchAppliance");
+            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMSwitchAppliance");
         }
     }
 }

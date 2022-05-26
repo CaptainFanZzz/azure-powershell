@@ -14,22 +14,16 @@
 
 using Xunit;
 using Xunit.Abstractions;
-using Microsoft.Azure.ServiceManagement.Common.Models;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
-
+using Microsoft.Azure.Commands.AsrV2ARcm.Test.ScenarioTests;
 
 namespace RecoveryServices.SiteRecovery.Test
 {
-    public class AsrA2ATests : AsrA2ATestsBase
+    public class AsrA2ATests : AsrA2ATestRunner
     {
-        public XunitTracingInterceptor _logger;
-
         public AsrA2ATests(
-            ITestOutputHelper output)
+            ITestOutputHelper output) : base(output)
         {
-            _logger = new XunitTracingInterceptor(output);
-            XunitTracingInterceptor.AddToContext(_logger);
-
             this.PowershellHelperFile = System.IO.Path.Combine(
                 System.AppDomain.CurrentDomain.BaseDirectory,
                 "ScenarioTests\\A2A\\A2ATestsHelper.ps1");
@@ -44,21 +38,21 @@ namespace RecoveryServices.SiteRecovery.Test
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestNewA2ADiskReplicationConfig()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-NewA2ADiskReplicationConfiguration");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-NewA2ADiskReplicationConfiguration");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestNewA2AManagedDiskReplicationConfig()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-NewA2AManagedDiskReplicationConfiguration");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-NewA2AManagedDiskReplicationConfiguration");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestNewA2AManagedDiskReplicationConfigWithCmk()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-NewA2AManagedDiskReplicationConfigurationWithCmk");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-NewA2AManagedDiskReplicationConfigurationWithCmk");
         }
 
 //#if NETSTANDARD
@@ -69,7 +63,7 @@ namespace RecoveryServices.SiteRecovery.Test
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ANewAsrFabric()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-NewAsrFabric");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-NewAsrFabric");
         }
 
 //#if NETSTANDARD
@@ -80,56 +74,56 @@ namespace RecoveryServices.SiteRecovery.Test
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ATestNewContainer()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-NewContainer");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-NewContainer");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ARemoveReplicationProtectedItemDisk()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-RemoveReplicationProtectedItemDisk");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-RemoveReplicationProtectedItemDisk");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2AReplicateProximityPlacementGroupVm()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-ReplicateProximityPlacementGroupVm");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-ReplicateProximityPlacementGroupVm");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2AVMNicConfig()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-VMNicConfig");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-VMNicConfig");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2AZoneToZoneRecoveryPlanReplication()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-ZoneToZoneRecoveryPlanReplication");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-ZoneToZoneRecoveryPlanReplication");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ARecoveryPlanReplication()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-RecoveryPlanReplication");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-RecoveryPlanReplication");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2AVMSSReplication()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-VMSSReplication");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-VMSSReplication");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ACRGReplication()
         {
-            this.RunPowerShellTest(_logger, Constants.NewModel, "Test-CRGReplication");
+            TestRunner.RunTestScript(Constants.NewModel, "Test-CRGReplication");
         }
     }
 }

@@ -14,20 +14,16 @@
 
 using Xunit;
 using Xunit.Abstractions;
-using Microsoft.Azure.ServiceManagement.Common.Models;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
-
+using Microsoft.Azure.Commands.RecoveryServices.SiteRecovery.Test.ScenarioTests;
 
 namespace RecoveryServices.SiteRecovery.Test
 {
-    public class AsrE2ATests : AsrTestsBase
+    public class AsrE2ATests : SiteRecoveryTestRunner
     {
-        public XunitTracingInterceptor _logger;
         public AsrE2ATests(
-            ITestOutputHelper output)
+            ITestOutputHelper output) : base(output)
         {
-            _logger = new XunitTracingInterceptor(output);
-            XunitTracingInterceptor.AddToContext(_logger);
             this.VaultSettingsFilePath = System.IO.Path.Combine(
                 System.AppDomain.CurrentDomain.BaseDirectory,
                 "ScenarioTests", "E2A", "E2A.VaultCredentials");
@@ -43,8 +39,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void FabricTests()
         {
-            this.RunPowerShellTest(
-                _logger,
+            this.TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-FabricTest -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -57,8 +52,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestCreatePolicy()
         {
-            this.RunPowerShellTest(
-                _logger,
+            this.TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-SiteRecoveryCreatePolicy -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -71,8 +65,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestEnableDR()
         {
-            this.RunPowerShellTest(
-                _logger,
+            this.TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-SiteRecoveryEnableDR -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -85,8 +78,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestMapNetwork()
         {
-            this.RunPowerShellTest(
-                _logger,
+            this.TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-MapNetwork -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -99,8 +91,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestTFO()
         {
-            this.RunPowerShellTest(
-                _logger,
+            this.TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-TFO -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -113,8 +104,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestPlannedFailover()
         {
-            this.RunPowerShellTest(
-                _logger,
+            this.TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-PlannedFailover -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -127,8 +117,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestReprotect()
         {
-            this.RunPowerShellTest(
-                _logger,
+            this.TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-Reprotect -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +

@@ -19,18 +19,15 @@ using Microsoft.Azure.ServiceManagement.Common.Models;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
 using Microsoft.Azure.Commands.RecoveryServices.SiteRecovery;
 using Microsoft.Azure.Portal.RecoveryServices.Models.Common;
+using Microsoft.Azure.Commands.RecoveryServices.SiteRecovery.Test.ScenarioTests;
 
 namespace RecoveryServices.SiteRecovery.Test
 {
-    public class AsrCommonTests : AsrTestsBase
+    public class AsrCommonTests : SiteRecoveryTestRunner
     {
-        public XunitTracingInterceptor _logger;
-
         public AsrCommonTests(
-            ITestOutputHelper output)
+            ITestOutputHelper output) : base(output)
         {
-            _logger = new XunitTracingInterceptor(output);
-            XunitTracingInterceptor.AddToContext(_logger);
             this.VaultSettingsFilePath = System.IO.Path.Combine(
                 System.AppDomain.CurrentDomain.BaseDirectory,
                 "ScenarioTests", "Common", "Common.VaultCredentials");
@@ -46,8 +43,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void EnumerationTests()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-SiteRecoveryEnumerationTests -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -64,8 +60,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void V2AEvent()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
              Constants.NewModel,
              "Test-AsrEvent -vaultSettingsFilePath \"" + this.VaultSettingsFilePath + "\"");
         }
@@ -76,8 +71,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void V2AGetJobTest()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
              Constants.NewModel,
              "Test-Job -vaultSettingsFilePath \"" + this.VaultSettingsFilePath + "\"");
         }
@@ -88,8 +82,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void V2AGetNotificationTest()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
              Constants.NewModel,
              "Test-NotificationSettings -vaultSettingsFilePath \"" + this.VaultSettingsFilePath + "\"");
         }

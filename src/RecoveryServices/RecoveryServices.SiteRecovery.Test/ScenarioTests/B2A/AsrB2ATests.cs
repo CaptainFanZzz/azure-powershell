@@ -14,21 +14,16 @@
 
 using Xunit;
 using Xunit.Abstractions;
-using Microsoft.Azure.ServiceManagement.Common.Models;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
-
+using Microsoft.Azure.Commands.RecoveryServices.SiteRecovery.Test.ScenarioTests;
 
 namespace RecoveryServices.SiteRecovery.Test
 {
-    public class AsrB2ATests : AsrTestsBase
+    public class AsrB2ATests : SiteRecoveryTestRunner
     {
-        public XunitTracingInterceptor _logger;
-
         public AsrB2ATests(
-            ITestOutputHelper output)
+            ITestOutputHelper output) : base(output)
         {
-            _logger = new XunitTracingInterceptor(output);
-            XunitTracingInterceptor.AddToContext(_logger);
             this.VaultSettingsFilePath = System.IO.Path.Combine(
                 System.AppDomain.CurrentDomain.BaseDirectory,
                 "ScenarioTests", "B2A", "B2A.VaultCredentials");
@@ -44,8 +39,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestCreatePolicy()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-CreatePolicy -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -58,8 +52,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestCreatePCMap()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-CreatePCMap -vaultSettingsFilePath \"" + this.VaultSettingsFilePath + "\"");
         }
@@ -70,8 +63,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestEnableDR()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-SiteRecoveryEnableDR -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -84,8 +76,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestUpdateRPI()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-UpdateRPI -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -98,8 +89,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestTFO()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-TFO -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -112,8 +102,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestPlannedFailover()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-PlannedFailover -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -126,8 +115,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestUpdateRPIWithDES()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-UpdateRPIWithDiskEncryptionSetMap -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -140,8 +128,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestCreateRPIWithAdditionalProperties()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-CreateRPIWithAdditionalProperties -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -154,8 +141,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestUpdateRPIWithAdditionalProperties()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-UpdateRPIWithAdditionalProperties -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -168,8 +154,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestCreateRPIWithAvZone()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-CreateRPIWithAvailabilityZone -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
@@ -182,8 +167,7 @@ namespace RecoveryServices.SiteRecovery.Test
             Category.CheckIn)]
         public void TestUpdateRPIWithAvZone()
         {
-            this.RunPowerShellTest(
-                _logger,
+            TestRunner.RunTestScript(
                 Constants.NewModel,
                 "Test-UpdateRPIWithAvailabilityZone -vaultSettingsFilePath \"" +
                 this.VaultSettingsFilePath +
