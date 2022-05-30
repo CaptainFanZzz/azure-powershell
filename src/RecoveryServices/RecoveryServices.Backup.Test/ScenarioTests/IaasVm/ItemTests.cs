@@ -115,6 +115,22 @@ namespace Microsoft.Azure.Commands.RecoveryServices.Backup.Test.ScenarioTests
             );
         }
 
+        [Fact(Skip = "To re-record in next release")]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        [Trait(TestConstants.Workload, TestConstants.AzureVM)]
+        public void TestAzureVMRPMountScript()
+        {
+            Collection<PSObject> psObjects = TestRunner.RunTestScript(
+                $"Import-Module {_commonModule4.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule4.AsAbsoluteLocation()}",
+                "Test-AzureVMRPMountScript");
+
+            AzureVmRPMountScriptDetails mountScriptDetails = (AzureVmRPMountScriptDetails)psObjects.First(
+                psObject => psObject.BaseObject.GetType() == typeof(AzureVmRPMountScriptDetails)).BaseObject;
+
+            Assert.True(AzureSession.Instance.DataStore.FileExists(mountScriptDetails.FilePath));
+        }
+
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         [Trait(TestConstants.Workload, TestConstants.AzureVM)]
