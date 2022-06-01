@@ -16,43 +16,51 @@ using Xunit;
 using Xunit.Abstractions;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
 using Microsoft.Azure.Commands.AsrV2ARcm.Test.ScenarioTests;
+using Microsoft.WindowsAzure.Commands.Utilities.Common;
 
 namespace RecoveryServices.SiteRecovery.Test
 {
     public class AsrA2ATests : AsrA2ATestRunner
     {
+        private readonly string _helpModule= $"ScenarioTests/A2A/A2ATestsHelper.ps1";
+        private readonly string _testModule = $"ScenarioTests/A2A/AsrA2ATests.ps1";
+
         public AsrA2ATests(
             ITestOutputHelper output) : base(output)
         {
-            this.PowershellHelperFile = System.IO.Path.Combine(
-                System.AppDomain.CurrentDomain.BaseDirectory,
-                "ScenarioTests\\A2A\\A2ATestsHelper.ps1");
-
-            this.PowershellFile = System.IO.Path.Combine(
-                System.AppDomain.CurrentDomain.BaseDirectory,
-                "ScenarioTests\\A2A\\AsrA2ATests.ps1");
-            this.Initialize();
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestNewA2ADiskReplicationConfig()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-NewA2ADiskReplicationConfiguration");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}",
+                "Test-NewA2ADiskReplicationConfiguration"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestNewA2AManagedDiskReplicationConfig()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-NewA2AManagedDiskReplicationConfiguration");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
+                "Test-NewA2AManagedDiskReplicationConfiguration"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestNewA2AManagedDiskReplicationConfigWithCmk()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-NewA2AManagedDiskReplicationConfigurationWithCmk");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
+                "Test-NewA2AManagedDiskReplicationConfigurationWithCmk"
+            );
         }
 
 //#if NETSTANDARD
@@ -63,7 +71,11 @@ namespace RecoveryServices.SiteRecovery.Test
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ANewAsrFabric()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-NewAsrFabric");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}",
+                "Test-NewAsrFabric"
+            );
         }
 
 //#if NETSTANDARD
@@ -74,56 +86,89 @@ namespace RecoveryServices.SiteRecovery.Test
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ATestNewContainer()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-NewContainer");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}",
+                "Test-NewContainer"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ARemoveReplicationProtectedItemDisk()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-RemoveReplicationProtectedItemDisk");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}",
+                "Test-RemoveReplicationProtectedItemDisk"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2AReplicateProximityPlacementGroupVm()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-ReplicateProximityPlacementGroupVm");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
+                "Test-ReplicateProximityPlacementGroupVm"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2AVMNicConfig()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-VMNicConfig");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
+                "Test-VMNicConfig"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2AZoneToZoneRecoveryPlanReplication()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-ZoneToZoneRecoveryPlanReplication");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
+                "Test-ZoneToZoneRecoveryPlanReplication"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ARecoveryPlanReplication()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-RecoveryPlanReplication");
+            TestRunner.RunTestScript(
+                $"Import-Module Az.Storage",
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
+                "Test-RecoveryPlanReplication"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2AVMSSReplication()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-VMSSReplication");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
+                "Test-VMSSReplication"
+            );
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void A2ACRGReplication()
         {
-            TestRunner.RunTestScript(Constants.NewModel, "Test-CRGReplication");
+            TestRunner.RunTestScript(
+                $"Import-Module {_helpModule.AsAbsoluteLocation()}",
+                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
+                "Test-CRGReplication"
+            );
         }
     }
 }

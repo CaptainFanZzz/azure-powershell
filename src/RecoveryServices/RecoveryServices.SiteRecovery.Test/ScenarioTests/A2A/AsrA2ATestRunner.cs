@@ -34,7 +34,6 @@ namespace Microsoft.Azure.Commands.AsrV2ARcm.Test.ScenarioTests
         protected AsrA2ATestRunner(ITestOutputHelper output)
         {
             TestRunner = TestManager.CreateInstance(output)
-                .WithNewPsScriptFilename($"{GetType().Name}.ps1")
                 .WithProjectSubfolderForTests("ScenarioTests")
                 .WithCommonPsScripts(new[]
                 {
@@ -42,15 +41,14 @@ namespace Microsoft.Azure.Commands.AsrV2ARcm.Test.ScenarioTests
                 })
                 .WithNewRmModules(helper => new[]
                 {
-                    PowershellFile,
-                    PowershellHelperFile,
                     helper.RMProfileModule,
 #if !NETSTANDARD
                     helper.GetRMModulePath("Az.RecoveryServices.SiteRecovery.psd1"),
 #endif                    
                     helper.GetRMModulePath("Az.RecoveryServices.psd1"),
                     helper.GetRMModulePath("Az.Network.psd1"),
-                    helper.GetRMModulePath("Az.Compute.psd1")
+                    helper.GetRMModulePath("Az.Compute.psd1"),
+                    helper.GetRMModulePath("Az.Storage.psd1")
                 })
                 .WithNewRecordMatcherArguments(
                     userAgentsToIgnore: new Dictionary<string, string>

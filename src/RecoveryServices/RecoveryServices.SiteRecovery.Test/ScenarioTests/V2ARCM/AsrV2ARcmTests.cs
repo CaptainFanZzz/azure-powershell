@@ -36,105 +36,105 @@ namespace RecoveryServices.SiteRecovery.Test
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMFabric()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMFabric");
+            this.TestRunner.RunTestScript("Test-V2ARCMFabric");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMPolicy()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMPolicy");
+            this.TestRunner.RunTestScript("Test-V2ARCMPolicy");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMContainer()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMContainer");
+            this.TestRunner.RunTestScript("Test-V2ARCMContainer");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMContainerMapping()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMContainerMapping");
+            this.TestRunner.RunTestScript("Test-V2ARCMContainerMapping");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.LiveOnly)]
         public void TestV2ARCMEnableDR()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMEnableDR");
+            this.TestRunner.RunTestScript("Test-V2ARCMEnableDR");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMUpdateProtection()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMUpdateProtection");
+            this.TestRunner.RunTestScript("Test-V2ARCMUpdateProtection");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMTestFailover()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMTestFailover");
+            this.TestRunner.RunTestScript("Test-V2ARCMTestFailover");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMFailover()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMFailover");
+            this.TestRunner.RunTestScript("Test-V2ARCMFailover");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMCommit()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMCommit");
+            this.TestRunner.RunTestScript("Test-V2ARCMCommit");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMReprotect()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMReprotect");
+            this.TestRunner.RunTestScript("Test-V2ARCMReprotect");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMFailback()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMFailback");
+            this.TestRunner.RunTestScript("Test-V2ARCMFailback");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMCancelFailover()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMCancelFailover");
+            this.TestRunner.RunTestScript("Test-V2ARCMCancelFailover");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.LiveOnly)]
         public void TestV2ARCM540Reprotect()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCM540Reprotect");
+            this.TestRunner.RunTestScript("Test-V2ARCM540Reprotect");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMRecoveryPlan()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMRecoveryPlan");
+            this.TestRunner.RunTestScript("Test-V2ARCMRecoveryPlan");
         }
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestV2ARCMSwitchAppliance()
         {
-            this.TestRunner.RunTestScript(Constants.NewModel, "Test-V2ARCMSwitchAppliance");
+            this.TestRunner.RunTestScript("Test-V2ARCMSwitchAppliance");
         }
     }
 }
