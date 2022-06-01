@@ -26,7 +26,8 @@ namespace Microsoft.Azure.Commands.RecoveryServices.Backup.Test.ScenarioTests
 {
     public partial class ItemTests : RecoveryServicesBackupTestRunner
     {
-        private readonly string _commonModule4 = $"ScenarioTests/{PsBackupProviderTypes.IaasVm}/Common.ps1";
+        private readonly string _commonModule4 = $"ScenarioTests/Common.ps1";
+        private readonly string _externalcommonModule4 = $"ScenarioTests/{PsBackupProviderTypes.IaasVm}/Common.ps1";
         private readonly string _testModule4 = $"ScenarioTests/{PsBackupProviderTypes.IaasVm}/ItemTests.ps1";
 
         [Fact]
@@ -115,21 +116,21 @@ namespace Microsoft.Azure.Commands.RecoveryServices.Backup.Test.ScenarioTests
             );
         }
 
-        [Fact(Skip = "To re-record in next release")]
-        [Trait(Category.AcceptanceType, Category.CheckIn)]
-        [Trait(TestConstants.Workload, TestConstants.AzureVM)]
-        public void TestAzureVMRPMountScript()
-        {
-            Collection<PSObject> psObjects = TestRunner.RunTestScript(
-                $"Import-Module {_commonModule4.AsAbsoluteLocation()}",
-                $"Import-Module {_testModule4.AsAbsoluteLocation()}",
-                "Test-AzureVMRPMountScript");
+        //[Fact(Skip = "To re-record in next release")]
+        //[Trait(Category.AcceptanceType, Category.CheckIn)]
+        //[Trait(TestConstants.Workload, TestConstants.AzureVM)]
+        //public void TestAzureVMRPMountScript()
+        //{
+        //    Collection<PSObject> psObjects = TestRunner.RunTestScript(
+        //        $"Import-Module {_commonModule4.AsAbsoluteLocation()}",
+        //        $"Import-Module {_testModule4.AsAbsoluteLocation()}",
+        //        "Test-AzureVMRPMountScript");
 
-            AzureVmRPMountScriptDetails mountScriptDetails = (AzureVmRPMountScriptDetails)psObjects.First(
-                psObject => psObject.BaseObject.GetType() == typeof(AzureVmRPMountScriptDetails)).BaseObject;
+        //    AzureVmRPMountScriptDetails mountScriptDetails = (AzureVmRPMountScriptDetails)psObjects.First(
+        //        psObject => psObject.BaseObject.GetType() == typeof(AzureVmRPMountScriptDetails)).BaseObject;
 
-            Assert.True(AzureSession.Instance.DataStore.FileExists(mountScriptDetails.FilePath));
-        }
+        //    Assert.True(AzureSession.Instance.DataStore.FileExists(mountScriptDetails.FilePath));
+        //}
 
         [Fact]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
@@ -233,6 +234,7 @@ namespace Microsoft.Azure.Commands.RecoveryServices.Backup.Test.ScenarioTests
         public void TestAzureManagedVMRestore()
         {
             TestRunner.RunTestScript(
+                $"Import-Module {_externalcommonModule4.AsAbsoluteLocation()}",
                 $"Import-Module {_commonModule4.AsAbsoluteLocation()}",
                 $"Import-Module {_testModule4.AsAbsoluteLocation()}",
                 "Test-AzureManagedVMRestore"

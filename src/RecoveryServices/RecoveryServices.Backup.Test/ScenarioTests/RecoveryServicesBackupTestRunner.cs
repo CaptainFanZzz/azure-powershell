@@ -12,7 +12,26 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Microsoft.Azure.Commands.Common.Authentication;
+using Microsoft.Azure.Commands.RecoveryServices.Backup.Cmdlets.Models;
+using Microsoft.Azure.Management.RecoveryServices.Backup;
+using Microsoft.Azure.Test.HttpRecorder;
+using Microsoft.WindowsAzure.Commands.ScenarioTest;
+using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Management.Automation;
+using Microsoft.Azure.Management.Compute;
+using Microsoft.Azure.Management.Internal.Resources;
+using Microsoft.Azure.Management.Network;
+using Microsoft.Azure.Management.RecoveryServices;
+using Microsoft.Azure.Management.Storage.Version2017_10_01;
+using Microsoft.Azure.ServiceManagement.Common.Models;
+using ComputeHelpers = Microsoft.Azure.PowerShell.Cmdlets.Compute.Helpers;
 using Microsoft.Azure.Commands.TestFx;
 using Xunit.Abstractions;
 
@@ -21,6 +40,19 @@ namespace Microsoft.Azure.Commands.RecoveryServices.Backup.Test.ScenarioTests
     public class RecoveryServicesBackupTestRunner
     {
         protected readonly ITestRunner TestRunner;
+        private readonly EnvironmentSetupHelper _helper;
+        protected string ResourceNamespace { get; private set; }
+
+        public RecoveryServicesBackupTestRunner()
+        {
+            _helper = new EnvironmentSetupHelper();
+            ResourceNamespace = "Microsoft.RecoveryServices";
+        }
+
+        protected void SetResourceNamespace(string resourceNamespace)
+        {
+            ResourceNamespace = resourceNamespace;
+        }
 
         protected RecoveryServicesBackupTestRunner(ITestOutputHelper output)
         {
@@ -28,6 +60,7 @@ namespace Microsoft.Azure.Commands.RecoveryServices.Backup.Test.ScenarioTests
                 .WithProjectSubfolderForTests("ScenarioTests")
                 .WithCommonPsScripts(new[]
                 {
+                    @"Common.ps1",
                     @"../AzureRM.Resources.ps1",
                     @"../AzureRM.Storage.ps1"
                 })
