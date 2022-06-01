@@ -54,6 +54,14 @@ namespace Microsoft.Azure.Commands.RecoveryServices.Backup.Test.ScenarioTests
             ResourceNamespace = resourceNamespace;
         }
 
+        public Collection<PSObject> RunTestScript(PsBackupProviderTypes providerType, params string[] scripts)
+        {
+            var sf = new StackTrace().GetFrame(1);
+            var callingClassType = sf.GetMethod().ReflectedType?.ToString();
+            var mockName = sf.GetMethod().Name;
+
+            return RunTestScript(providerType, callingClassType, mockName );
+        }
         protected RecoveryServicesBackupTestRunner(ITestOutputHelper output)
         {
             TestRunner = TestManager.CreateInstance(output)
