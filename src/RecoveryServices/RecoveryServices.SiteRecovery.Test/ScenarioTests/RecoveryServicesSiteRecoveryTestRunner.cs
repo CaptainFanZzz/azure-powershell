@@ -23,6 +23,9 @@ using Microsoft.Azure.Portal.RecoveryServices.Models.Common;
 using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
 using Microsoft.Azure.Commands.TestFx;
 using Xunit.Abstractions;
+using Microsoft.Azure.Management.RecoveryServices;
+using Microsoft.Azure.Management.Internal.ResourceManager.Version2018_05_01;
+using Microsoft.Azure.Management.RecoveryServices.Backup;
 
 namespace Microsoft.Azure.Commands.RecoveryServices.SiteRecovery.Test.ScenarioTests
 {
@@ -74,33 +77,55 @@ namespace Microsoft.Azure.Commands.RecoveryServices.SiteRecovery.Test.ScenarioTe
         protected SiteRecoveryTestRunner(ITestOutputHelper output)
         {
             TestRunner = TestManager.CreateInstance(output)
-                .WithNewPsScriptFilename($"{GetType().Name}.ps1")
                 .WithProjectSubfolderForTests("ScenarioTests")
                 .WithNewRmModules(helper => new[]
                 {
-                    PowershellFile,
                     helper.RMProfileModule,
 #if !NETSTANDARD
                     helper.GetRMModulePath("Az.RecoveryServices.SiteRecovery.psd1"),
 #endif
-                    helper.GetRMModulePath("Az.RecoveryServices.psd1")
+                    helper.GetRMModulePath("Az.RecoveryServices.psd1"),
+                    helper.GetRMModulePath("Az.Network.psd1"),
+                    helper.GetRMModulePath("Az.Compute.psd1"),
+                    helper.GetRMModulePath("Az.Storage.psd1")
                 })
                 .WithNewRecordMatcherArguments(
                     userAgentsToIgnore: new Dictionary<string, string>
                     {
-                        {"Microsoft.Azure.Management.Resources.ResourceManagementClient", "2016-02-01"}
+                        {"Microsoft.Azure.Management.Resources.ResourceManagementClient", "2016-02-01"},
+                        {"Microsoft.Azure.Management.Internal.Resources.ResourceManagementClient", "2016-09-01"}
                     },
                     resourceProviders: new Dictionary<string, string>
                     {
                         {"Microsoft.Resources", null},
                         {"Microsoft.Features", null},
                         {"Microsoft.Authorization", null},
-                        {"Microsoft.Compute", null}
+                        {"Microsoft.Compute", null},
+                        {"Microsoft.Storage", null},
+                        {"Microsoft.Network", null}
                     }
                 ).WithManagementClients(
+                    GetRecoveryServicesManagementClient,
+                    GetRmRestClient,
+                    GetRecoveryServicesBackupClient,
                     GetSiteRecoveryManagementClient
                 )
                 .Build();
+        }
+
+        private static RecoveryServicesClient GetRecoveryServicesManagementClient(MockContext context)
+        {
+            return context.GetServiceClient<RecoveryServicesClient>(TestEnvironmentFactory.GetTestEnvironment());
+        }
+
+        private static ResourceManagementClient GetRmRestClient(MockContext context)
+        {
+            return context.GetServiceClient<ResourceManagementClient>(TestEnvironmentFactory.GetTestEnvironment());
+        }
+
+        private static RecoveryServicesBackupClient GetRecoveryServicesBackupClient(MockContext context)
+        {
+            return context.GetServiceClient<RecoveryServicesBackupClient>(TestEnvironmentFactory.GetTestEnvironment());
         }
 
         private SiteRecoveryManagementClient GetSiteRecoveryManagementClient(MockContext context)

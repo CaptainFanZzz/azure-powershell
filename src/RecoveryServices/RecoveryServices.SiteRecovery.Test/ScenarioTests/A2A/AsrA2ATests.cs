@@ -17,10 +17,11 @@ using Xunit.Abstractions;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
 using Microsoft.Azure.Commands.AsrV2ARcm.Test.ScenarioTests;
 using Microsoft.WindowsAzure.Commands.Utilities.Common;
+using Microsoft.Azure.Commands.RecoveryServices.SiteRecovery.Test.ScenarioTests;
 
 namespace RecoveryServices.SiteRecovery.Test
 {
-    public class AsrA2ATests : AsrA2ATestRunner
+    public class AsrA2ATests : SiteRecoveryTestRunner
     {
         private readonly string _helpModule= $"ScenarioTests/A2A/A2ATestsHelper.ps1";
         private readonly string _testModule = $"ScenarioTests/A2A/AsrA2ATests.ps1";
@@ -142,7 +143,6 @@ namespace RecoveryServices.SiteRecovery.Test
         public void A2ARecoveryPlanReplication()
         {
             TestRunner.RunTestScript(
-                $"Import-Module Az.Storage",
                 $"Import-Module {_helpModule.AsAbsoluteLocation()}",
                 $"Import-Module {_testModule.AsAbsoluteLocation()}", 
                 "Test-RecoveryPlanReplication"
