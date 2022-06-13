@@ -28,13 +28,6 @@ namespace RecoveryServices.SiteRecovery.Test
         public AsrCommonTests(
             ITestOutputHelper output) : base(output)
         {
-            this.VaultSettingsFilePath = System.IO.Path.Combine(
-                System.AppDomain.CurrentDomain.BaseDirectory,
-                "ScenarioTests", "Common", "Common.VaultCredentials");
-            this.PowershellFile = System.IO.Path.Combine(
-                System.AppDomain.CurrentDomain.BaseDirectory,
-                "ScenarioTests", "Common", "AsrTests.ps1");
-            this.Initialize();
         }
 
         [Fact]

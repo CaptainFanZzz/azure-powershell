@@ -24,13 +24,6 @@ namespace RecoveryServices.SiteRecovery.Test
         public AsrE2ATests(
             ITestOutputHelper output) : base(output)
         {
-            this.VaultSettingsFilePath = System.IO.Path.Combine(
-                System.AppDomain.CurrentDomain.BaseDirectory,
-                "ScenarioTests", "E2A", "E2A.VaultCredentials");
-            this.PowershellFile = System.IO.Path.Combine(
-                System.AppDomain.CurrentDomain.BaseDirectory,
-                "ScenarioTests", "E2A", "AsrE2ATests.ps1");
-            this.Initialize();
         }
 
         [Fact]

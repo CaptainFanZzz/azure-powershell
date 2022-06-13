@@ -165,8 +165,8 @@ namespace RecoveryServices.SiteRecovery.Test
         public void A2ACRGReplication()
         {
             TestRunner.RunTestScript(
+                $"Import-Module {_testModule.AsAbsoluteLocation()}",
                 $"Import-Module {_helpModule.AsAbsoluteLocation()}",
-                $"Import-Module {_testModule.AsAbsoluteLocation()}", 
                 "Test-CRGReplication"
             );
         }
